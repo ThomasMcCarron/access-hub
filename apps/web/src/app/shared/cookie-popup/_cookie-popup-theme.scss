@@ -1,0 +1,10 @@
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+
+@mixin theme($theme) {
+  app-cookie-popup {
+    .popup {
+      color: mat.get-theme-color($theme, on-surface);
+      background: mat.get-theme-color($theme, surface);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+
+@use './app/shared/cookie-popup/cookie-popup-theme';
+
+@mixin theme($theme) {
+  .app-background {
+    background: mat.get-theme-color($theme, surface);
+  }
+
+  @include cookie-popup-theme.theme($theme);
+
+}
+
+

@@ -1,0 +1,21 @@
+@use 'sass:math';
+@use '@angular/cdk/index' as cdk;
+@use '@angular/material/index' as mat;
+
+.popup {
+  @include mat.elevation(2);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 24px;
+  max-width: 430px;
+  z-index: cdk.$overlay-container-z-index + 1;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
