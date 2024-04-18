@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
 
 @use './app/shared/cookie-popup/cookie-popup-theme';
+@use './app/shared/navbar/navbar-theme';
+@use './app/home/home-theme';
 
 @mixin theme($theme) {
   .app-background {
@@ -8,7 +10,8 @@
   }
 
   @include cookie-popup-theme.theme($theme);
-
+  @include navbar-theme.theme($theme);
+  @include home-theme.theme($theme);
 }
 
 

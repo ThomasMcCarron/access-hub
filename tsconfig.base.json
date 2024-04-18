@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@access-hub/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@access-hub/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@access-hub/shared-orm-util": ["libs/shared-orm-util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

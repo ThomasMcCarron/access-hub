@@ -1,4 +1,18 @@
-<h1>Welcome to Access Hub</h1>
-<button mat-flat-button color="primary">primary button</button>
-<button mat-flat-button color="accent">accent button</button>
-<button mat-flat-button color="warn">warn button</button>
+<div class="home-header flex flex-col items-center p-2">
+  <div class="home-header-headline">
+    <h1 class="mat-h1">Access Hub</h1>
+    <h2>An open-source, easily-searchable directory of apps to make the world accessible</h2>
+  </div>
+
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="outline">
+          <mat-label>Search for Apps</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput autocomplete="off">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
