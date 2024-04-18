@@ -1,0 +1,19 @@
+{
+  "name": "access-hub-interfaces",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/access-hub-interfaces/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/access-hub-interfaces",
+        "main": "libs/access-hub-interfaces/src/index.ts",
+        "tsConfig": "libs/access-hub-interfaces/tsconfig.lib.json",
+        "assets": ["libs/access-hub-interfaces/*.md"]
+      }
+    }
+  }
+}

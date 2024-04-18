@@ -1,0 +1,31 @@
+{
+  "name": "access-hub-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/access-hub-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "access-hub-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "access-hub-api:build:development"
+        },
+        "production": {
+          "buildTarget": "access-hub-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/access-hub-api/jest.config.ts"
+      }
+    }
+  }
+}
