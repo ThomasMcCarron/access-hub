@@ -1,26 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @use '@angular/material' as mat;
 @use '@angular/material-experimental' as matx;
 @use './app-theme';
 @use './styles/general';
 
-$web-m3-light-theme: matx.define-theme((
-  color: (
-    theme-type: light,
-    primary: matx.$m3-blue-palette,
-    tertiary: matx.$m3-violet-palette,
-  ),
-  typography: (
-
-  ),
-  density: (
-    scale: -1
+$web-m3-light-theme: matx.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: matx.$m3-blue-palette,
+      tertiary: matx.$m3-violet-palette,
+    ),
+    typography: (),
+    density: (
+      scale: -1,
+    ),
   )
-));
+);
 
 @include mat.core();
 @include app-theme.theme($web-m3-light-theme);
 @include matx.color-variants-back-compat($web-m3-light-theme);
-
 
 :root {
   @include mat.all-component-themes($web-m3-light-theme);
