@@ -15,9 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@access-hub/access-hub-interfaces": [
-        "libs/access-hub-interfaces/src/index.ts"
-      ]
+      "@access-hub/api-interfaces": ["libs/api-interfaces/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

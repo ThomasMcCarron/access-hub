@@ -1,9 +1,0 @@
-{
-  "name": "access-hub-web-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/access-hub-web-e2e/src",
-  "implicitDependencies": ["access-hub-web"],
-  "// targets": "to see all targets run: nx show project access-hub-web-e2e --web",
-  "targets": {}
-}

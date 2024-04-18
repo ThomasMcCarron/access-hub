@@ -1,3 +1,3 @@
 export function accessHubInterfaces(): string {
-  return 'access-hub-interfaces';
+  return 'api-interfaces';
 }
