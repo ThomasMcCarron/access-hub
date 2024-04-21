@@ -10,7 +10,7 @@ export interface IApp extends IEntity<string> {
   description: string;
   url: string;
   pricing: IPricingInfo;
-  developer: IDeveloper;
+  developer?: IDeveloper;
   platforms: IPlatform[];
   platformLinks: Map<number, string>;
   features: IFeature[];
@@ -19,9 +19,10 @@ export interface IApp extends IEntity<string> {
   listedBy: IUser;
 }
 
-export interface IFeature {
+export interface IFeature extends IEntity<number> {
   name: string;
   description: string;
+  ofApp: IApp;
 }
 
 export interface IPricingInfo {

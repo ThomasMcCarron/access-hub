@@ -3,7 +3,7 @@ import { ICategory } from '../model/category.model';
 export const VISION: ICategory = {
   id: 1,
   name: 'Vision',
-  description: 'Apps to assist people with vision impairments'
+  description: 'Apps to assist people with vision impairments',
 };
 
 export const HEARING: ICategory = {

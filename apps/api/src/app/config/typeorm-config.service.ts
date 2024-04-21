@@ -1,6 +1,13 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { App, Feature } from '../entities/app/app.entity';
+import { Category } from '../entities/category/category.entity';
+import { Developer } from '../entities/developer/developer.entity';
+import { Platform } from '../entities/platform/platform.entity';
+import { Review } from '../entities/review/review.entity';
+import { User } from '../entities/user/user.entity';
+import { InitialiseDatabase1713739122870 } from '../../migrations/migration';
 
 @Injectable()
 export class TypeormConfigService implements TypeOrmOptionsFactory {
@@ -22,8 +29,16 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
       username: this.config.get<string>('DATABASE_USER'),
       password: this.config.get<string>('DATABASE_PASSWORD'),
       entities: [
+        App,
+        Feature,
+        Category,
+        Developer,
+        Platform,
+        Review,
+        User
       ],
       migrations: [
+        InitialiseDatabase1713739122870
       ],
       migrationsTableName: 'typeorm_migrations',
       migrationsRun: true,
