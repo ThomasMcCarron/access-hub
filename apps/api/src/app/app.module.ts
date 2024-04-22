@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { getEnvPath, validateEnvironmentConfig } from './environment/env.validation';
 import { TypeormConfigService } from './config/typeorm-config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EntitiesModule } from './entities/entities.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/environments`);
 
@@ -14,8 +15,10 @@ const envFilePath: string = getEnvPath(`${__dirname}/environments`);
       isGlobal: true
     }),
     TypeOrmModule.forRootAsync({ useClass: TypeormConfigService }),
+    EntitiesModule
   ],
-  controllers: [],
+  controllers: [
+  ],
   providers: [],
 })
 export class AppModule {}
