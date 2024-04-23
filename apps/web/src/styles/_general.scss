@@ -38,7 +38,7 @@ app-root > router-outlet + app-admin {
 @media (max-width: constants.$extra-small-breakpoint-width) {
   app-root > router-outlet + .main-content,
   app-root > router-outlet + app-admin {
-    margin-top: 112px;
+    margin-top: 72px;
     overflow-y: visible;
   }
 }
