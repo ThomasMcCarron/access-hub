@@ -8,6 +8,7 @@ import { Platform } from '../entities/platform/platform.entity';
 import { Review } from '../entities/review/review.entity';
 import { User } from '../entities/user/user.entity';
 import { InitialiseDatabase1713739122870 } from '../../migrations/migration';
+import { InsertDefaultData1713908121707 } from '../../migrations/migration/1713908121707-InsertDefaultData';
 
 @Injectable()
 export class TypeormConfigService implements TypeOrmOptionsFactory {
@@ -38,7 +39,8 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
         User
       ],
       migrations: [
-        InitialiseDatabase1713739122870
+        InitialiseDatabase1713739122870,
+        InsertDefaultData1713908121707
       ],
       migrationsTableName: 'typeorm_migrations',
       migrationsRun: true,

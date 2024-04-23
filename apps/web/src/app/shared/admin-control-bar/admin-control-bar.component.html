@@ -1,0 +1,11 @@
+<nav class="admin-control-bar flex flex-row mb-2" aria-label="Top Control bar">
+  <div class="admin-control-bar-content p-2 rounded-lg">
+    <button mat-icon-button [routerLink]="returnTo" aria-label="Previous Page">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="admin-control-bar-title">{{title}}</span>
+
+    <ng-content></ng-content>
+
+  </div>
+</nav>

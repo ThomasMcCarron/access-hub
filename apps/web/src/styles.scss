@@ -9,12 +9,12 @@ $light-theme: matx.define-theme(
   (
     color: (
       theme-type: light,
-      primary: matx.$m3-blue-palette,
-      tertiary: matx.$m3-violet-palette,
+      primary: matx.$m3-cyan-palette,
+      tertiary: matx.$m3-orange-palette,
     ),
     typography: (
       plain-family: 'Roboto',
-      brand-family: 'DM Serif Display'
+      brand-family: 'Work Sans'
     ),
     density: (
       scale: 0,
@@ -22,12 +22,9 @@ $light-theme: matx.define-theme(
   )
 );
 
-
-
 @include mat.core();
 @include app-theme.theme($light-theme);
 @include matx.color-variants-back-compat($light-theme);
-@include mat.typography-hierarchy($light-theme, $back-compat: true);
 
 :root {
   @include mat.all-component-themes($light-theme);

@@ -5,7 +5,7 @@ import { Platform } from './platform.entity';
 
 @Controller('platforms')
 export class PlatformController extends IntEntityController<Platform> {
-  constructor(private readonly categoryService: PlatformService) {
-    super(categoryService, new Logger(PlatformController.name), 'category');
+  constructor(private readonly platformService: PlatformService) {
+    super(platformService, new Logger(PlatformController.name), 'platform');
   }
 }

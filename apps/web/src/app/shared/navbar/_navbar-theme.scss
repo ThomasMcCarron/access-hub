@@ -2,13 +2,13 @@
 
 @mixin theme($theme) {
   app-navbar {
-    color: mat.get-theme-color($theme, primary);
+    color: mat.get-theme-color($theme, secondary);
 
     .navbar, .navbar-header {
-      background: mat.get-theme-color($theme, primary-container);
-      
+      background: mat.get-theme-color($theme, secondary-container);
+
       .navbar-header-item-selected {
-        background: rgba(mat.get-theme-color($theme, primary), 0.1);
+        background: rgba(mat.get-theme-color($theme, secondary), 0.1);
       }
     }
   }

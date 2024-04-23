@@ -1,3 +1,5 @@
+@use './constants';
+
 html,
 body {
   height: 100%;
@@ -6,4 +8,37 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+app-root > app-admin {
+  flex: 1;
+}
+
+app-root > router-outlet + .main-content,
+app-root > router-outlet + app-admin {
+  margin-top: 72px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: constants.$extra-small-breakpoint-width) {
+  app-root > router-outlet + .main-content,
+  app-root > router-outlet + app-admin {
+    margin-top: 112px;
+    overflow-y: visible;
+  }
 }

@@ -26,6 +26,37 @@
       "options": {
         "jestConfig": "apps/api/jest.config.ts"
       }
+    },
+    "build-migration-config": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/typeorm-migration",
+        "main": "apps/api/src/migrations/typeorm.config.ts",
+        "tsConfig": "apps/api/tsconfig.app.json",
+        "isolatedConfig": true,
+        "webpackConfig": "apps/api/typeorm-migration-webpack.config.js"
+      }
+    },
+    "typeorm-generate-migration": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "cwd": "apps/api",
+        "commands": ["typeorm -d ../../dist/apps/typeorm-migration/main.js migration:generate"]
+      },
+      "dependsOn": ["build-migration-config"]
+    },
+    "typeorm-create-migration": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "cwd": "apps/api",
+        "commands": ["typeorm migration:create"]
+      },
+      "dependsOn": ["build-migration-config"]
     }
   }
 }

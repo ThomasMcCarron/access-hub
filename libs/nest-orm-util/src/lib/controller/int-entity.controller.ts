@@ -7,7 +7,7 @@ import {
   Logger,
   Param,
   ParseIntPipe,
-  Put,
+  Put, Query
 } from '@nestjs/common';
 import { UpdateResult } from 'typeorm';
 import { PrimaryIntEntity } from '../entity';
@@ -21,6 +21,29 @@ export class IntEntityController<
     protected override readonly entityName: string
   ) {
     super(baseService, logger, entityName);
+  }
+
+  @Get('admin/count')
+  async count(): Promise<number> {
+    this.logger.log(`Getting ${this.entityName} count`);
+    return this.baseService.count();
+  }
+
+  @Get('admin/page')
+  async findPage(
+    @Query('pageNumber') pageNumber: number,
+    @Query('pageSize') pageSize: number
+  ): Promise<T[]> {
+    this.logger.log(
+      `Finding page of ${this.entityName}, #${pageNumber} size ${pageSize}`
+    );
+    return this.baseService.findPage(+pageNumber, +pageSize);
+  }
+
+  @Get('admin/all')
+  async findAll(): Promise<T[]> {
+    this.logger.log(`Finding all ${this.entityName}`);
+    return this.baseService.findAll();
   }
 
   @Put('admin/:id')

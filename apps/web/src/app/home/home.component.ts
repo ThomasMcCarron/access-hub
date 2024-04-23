@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -21,5 +21,7 @@ import { MatCard, MatCardModule } from '@angular/material/card';
   ]
 })
 export class HomeComponent {
+  @HostBinding('class.main-content') readonly mainContentClass = true;
+
   title = 'Access Hub';
 }

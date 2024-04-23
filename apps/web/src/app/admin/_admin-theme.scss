@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .admin-header {
+    background: mat.get-theme-color($theme, surface);
+  }
+}

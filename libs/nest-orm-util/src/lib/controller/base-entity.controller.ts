@@ -21,12 +21,6 @@ export class BaseEntityController<
     return this.baseService.save(entity);
   }
 
-  @Get('admin/count')
-  async count(): Promise<number> {
-    this.logger.log(`Getting ${this.entityName} count`);
-    return this.baseService.count();
-  }
-
   @Post('admin/criteria')
   async searchByCriteria(
     @Body() criteria: SearchCriteria<T>,
@@ -40,22 +34,5 @@ export class BaseEntityController<
       return this.baseService.countByCriteria(parsedCriteria);
     }
     return this.baseService.searchByCriteria(parsedCriteria);
-  }
-
-  @Get('admin/page')
-  async findPage(
-    @Query('pageNumber') pageNumber: number,
-    @Query('pageSize') pageSize: number
-  ): Promise<T[]> {
-    this.logger.log(
-      `Finding page of ${this.entityName}, #${pageNumber} size ${pageSize}`
-    );
-    return this.baseService.findPage(+pageNumber, +pageSize);
-  }
-
-  @Get('admin/all')
-  async findAll(): Promise<T[]> {
-    this.logger.log(`Finding all ${this.entityName}`);
-    return this.baseService.findAll();
   }
 }

@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  admin-control-bar {
+    color: mat.get-theme-color($theme, tertiary);
+  }
+
+  .admin-control-bar-content {
+    color: mat.get-theme-color($theme, tertiary);
+    background: mat.get-theme-color($theme, tertiary-container);
+  }
+
+  .admin-control-bar-title {
+    font: mat.get-theme-typography($theme, label-large, font)
+  }
+}

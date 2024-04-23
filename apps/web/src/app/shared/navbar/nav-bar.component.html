@@ -1,14 +1,22 @@
-<nav class="navbar-header flex flex-wrap items-center p-4" aria-label="Top Toolbar">
+<nav class="navbar-header flex flex-wrap items-center p-3 m-1 rounded-lg" aria-label="Top Toolbar">
   <a mat-button routerLink="/" aria-label="Access Hub Home">
     Home
   </a>
   <div class="flex-grow"></div>
-  <a mat-button class="navbar-hide-small navbar-header-item-selected" routerLink="contribute"
-     routerLinkActive="navbar-header-item-selected">Contribute</a>
+  <a mat-button class="navbar-hide-small" routerLink="admin"
+     routerLinkActive="navbar-header-item-selected"
+  >
+    Admin
+  </a>
+
+  <a mat-button class="navbar-hide-small" routerLink="contribute"
+     routerLinkActive="navbar-header-item-selected">
+    Contribute
+  </a>
 </nav>
 <nav class="navbar navbar-show-small" aria-label="Section Nav Bar">
   <a mat-button class="navbar-link">
     Contribute
   </a>
-  <a mat-button class="navbar-link" routerLink="guides">Guides</a>
+  <a mat-button class="navbar-link" routerLink="admin">Admin</a>
 </nav>
