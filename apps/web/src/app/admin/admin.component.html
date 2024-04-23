@@ -1,35 +1,24 @@
-<mat-sidenav-container class="flex">
-  @if (isScreenSmall | async) {
-    <mat-sidenav
-      #sidenav
-      [opened]="(isScreenSmall | async) === false"
-      [mode]="(isScreenSmall | async) ? 'over' : 'side'"
-      [fixedInViewport]="(isScreenSmall | async)"
-      [fixedTopGap]="(isExtraScreenSmall | async) ? 92 : 56"
+<div class="flex flex-row h-full mx-1">
+  @if (
+    (isScreenSmall | async) === false
+    ||
+    this.router.isActive('admin', matchOptions)
+  ) {
+    <div class="nav-menu-outer-container pb-1"
+         [ngClass]="(isScreenSmall | async) === true ? 'flex-grow' : 'pr-1'"
     >
-      <app-admin-nav></app-admin-nav>
-    </mat-sidenav>
-  }
-
-  <div class="admin-sidenav-content">
-
-    <header class="admin-page-header">
-      <button mat-button (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-        Menu
-      </button>
-    </header>
-
-    <div class="admin-sidenav-inner-content">
-      <main class="admin-sidenav-body-content">
-        @if ((isScreenSmall | async) === false) {
-          <app-admin-nav></app-admin-nav>
-        }
-        <div class="flex-grow mx-1 rounded">
-          <router-outlet></router-outlet>
-        </div>
-      </main>
+      <div class="nav-menu-inner-container rounded-lg">
+        <app-admin-nav></app-admin-nav>
+      </div>
     </div>
-  </div>
-
-</mat-sidenav-container>
+  }
+  @if (
+    (isScreenSmall | async) === false
+    ||
+    !this.router.isActive('admin', matchOptions)
+  ) {
+    <div class="flex-grow h-full overflow-y-scroll">
+      <router-outlet></router-outlet>
+    </div>
+  }
+</div>

@@ -1,7 +1,12 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .admin-header {
-    background: mat.get-theme-color($theme, surface);
+  .nav-menu-inner-container {
+    color: mat.get-theme-color($theme, on-surface);
+    background: mat.get-theme-color($theme, surface-container);
+  }
+
+  .nav-menu-title {
+    font: mat.get-theme-typography($theme, label-large, font)
   }
 }

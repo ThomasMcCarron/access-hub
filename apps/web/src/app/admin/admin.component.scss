@@ -1,30 +1,12 @@
 @use '../../styles/constants';
 
-.admin-page-header {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  min-height: 60px;
-
-  @media (max-width: 959px) {
-    display: flex;
-  }
+.nav-menu-outer-container {
 }
 
-.admin-sidenav-content {
+.nav-menu-inner-container {
+  overflow: auto;
+  height: 100%;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-}
-
-.admin-sidenav-inner-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.admin-sidenav-body-content {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
 }

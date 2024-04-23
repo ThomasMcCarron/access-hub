@@ -5,9 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { IsActiveMatchOptions, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { map, Observable } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -33,7 +33,8 @@ import { AdminNavComponent } from './admin-nav.component';
     MatSidenavModule,
     MatNavList,
     MatListItem,
-    AdminNavComponent
+    AdminNavComponent,
+    NgClass
   ]
 })
 export class AdminComponent {
@@ -42,8 +43,16 @@ export class AdminComponent {
   isExtraScreenSmall: Observable<boolean>;
   isScreenSmall: Observable<boolean>;
 
+  matchOptions: IsActiveMatchOptions = {
+    fragment: 'exact',
+    matrixParams: 'exact',
+    queryParams: 'exact',
+    paths: 'exact',
+  };
+
   constructor(
-    breakpoints: BreakpointObserver
+    private breakpoints: BreakpointObserver,
+    protected router: Router
   ) {
     this.isExtraScreenSmall = breakpoints.observe(`(max-width: 959px)`)
       .pipe(
