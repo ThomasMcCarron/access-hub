@@ -9,7 +9,13 @@ export const AdminRoutes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
+        title: 'Access Hub - Admin',
         loadComponent: () => import('./dashboard').then(m => m.AdminDashboardComponent)
+      },
+      {
+        path: 'entities',
+        pathMatch: 'full',
+        redirectTo: ''
       },
       {
         path: 'entities',

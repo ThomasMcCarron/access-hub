@@ -1,9 +1,11 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .home-header {
+  .contribute-header {
     background: mat.get-theme-color($theme, secondary-container);
     background: linear-gradient(0deg, rgba(0,0,0,0) 0%, mat.get-theme-color($theme, secondary-container) 100%);
     color: mat.get-theme-color($theme, on-secondary-container);
   }
+
+
 }

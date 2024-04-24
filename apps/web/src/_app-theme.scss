@@ -4,6 +4,7 @@
 @use './app/shared/cookie-popup/cookie-popup-theme';
 @use './app/shared/navbar/navbar-theme';
 @use './app/home/home-theme';
+@use './app/contribute/contribute-theme';
 @use './app/admin/admin-theme';
 
 
@@ -14,6 +15,7 @@
 
   @include admin-control-bar-theme.theme($theme);
   @include cookie-popup-theme.theme($theme);
+  @include contribute-theme.theme($theme);
   @include navbar-theme.theme($theme);
   @include home-theme.theme($theme);
   @include admin-theme.theme($theme);
