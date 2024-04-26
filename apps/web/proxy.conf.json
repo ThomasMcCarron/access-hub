@@ -2,5 +2,20 @@
   "/api": {
     "target": "http://localhost:3333",
     "secure": false
+  },
+  "/ory": {
+    "target": "http://localhost:4000",
+    "secure": false,
+    "pathRewrite": {
+      "^/ory": ""
+    }
+  },
+  "/ui": {
+    "target": "http://localhost:4000",
+    "secure": false
+  },
+  "/self-service": {
+    "target": "http://localhost:4000",
+    "secure": false
   }
 }

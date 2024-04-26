@@ -4,6 +4,9 @@ import { getEnvPath, validateEnvironmentConfig } from './environment/env.validat
 import { TypeormConfigService } from './config/typeorm-config.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EntitiesModule } from './entities/entities.module';
+import { AccountController } from './auth/account.controller';
+import { OryConfigService } from './config/ory-config.service';
+import { OryClientModule } from '@access-hub/nest-ory-client';
 
 const envFilePath: string = getEnvPath(`${__dirname}/environments`);
 
@@ -15,9 +18,11 @@ const envFilePath: string = getEnvPath(`${__dirname}/environments`);
       isGlobal: true
     }),
     TypeOrmModule.forRootAsync({ useClass: TypeormConfigService }),
+    OryClientModule.forRootAsync({ useClass: OryConfigService }),
     EntitiesModule
   ],
   controllers: [
+    AccountController
   ],
   providers: [],
 })

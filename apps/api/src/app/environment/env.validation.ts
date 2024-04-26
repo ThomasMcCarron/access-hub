@@ -39,6 +39,14 @@ class EnvironmentVariables {
   @IsNumber()
   DATABASE_PORT: number;
 
+  @IsDefined()
+  @IsString()
+  @MinLength(1)
+  ORY_CLIENT_URI: string;
+  @IsDefined()
+  @IsString()
+  @MinLength(1)
+  ORY_ACCESS_TOKEN: string;
 }
 
 export function validateEnvironmentConfig(config: Record<string, unknown>) {

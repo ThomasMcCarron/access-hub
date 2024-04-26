@@ -40,3 +40,7 @@ Thumbs.db
 
 .nx/cache
 .angular
+
+apps/api/src/environments/development.env
+
+apps/api/src/environments/.env

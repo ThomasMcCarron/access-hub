@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:4200/api',
+  oryBaseUrl: 'http://localhost:4200/ory',
+  oryWithCredentials: false,
   buildTimestamp: `'${new Date().getTime()}'`,
 };
 

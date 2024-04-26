@@ -9,6 +9,21 @@
     Admin
   </a>
 
+  @if (user(); as user) {
+    <span>Logged in as {{user.firstName}} {{user.lastName}}</span>
+    <a mat-button routerLink="login"
+       (click)="logout()"
+    >
+      Sign Out
+    </a>
+  } @else {
+    <a mat-button routerLink="login"
+       (click)="login()"
+    >
+      Login
+    </a>
+  }
+
   <a mat-button routerLink="contribute"
      routerLinkActive="navbar-header-item-selected">
     Contribute

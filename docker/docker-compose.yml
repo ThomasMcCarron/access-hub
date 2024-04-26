@@ -4,6 +4,10 @@ volumes:
   postgres_data:
     driver: local
 
+networks:
+  web:
+    external: true
+
 services:
   postgres:
     image: postgres
