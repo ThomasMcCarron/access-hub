@@ -11,10 +11,10 @@ import { firstValueFrom, of, retry, switchMap } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private session: WritableSignal<Session | undefined> = signal(undefined);
-  public isAuthenticated: Signal<boolean> = computed(() => !!this.session()?.active)
+  public isAuthenticated: Signal<boolean> = computed(() => !!this.session()?.active);
 
   public user: WritableSignal<IUser | undefined> = signal(undefined);
-  role: Signal<Role> = computed(() => this.user()?.role ?? Role.ANONYMOUS)
+  role: Signal<Role> = computed(() => this.user()?.role ?? Role.ANONYMOUS);
 
   public isLoaded: WritableSignal<boolean> = signal(false);
 

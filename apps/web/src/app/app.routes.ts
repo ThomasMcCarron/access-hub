@@ -16,5 +16,9 @@ export const appRoutes: Route[] = [
     path: 'admin',
     title: 'Access Hub - Admin',
     loadChildren: () => import('./admin/admin.routes').then(m => m.AdminRoutes)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.routes').then(m => m.AccountRoutes)
   }
 ];

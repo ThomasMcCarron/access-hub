@@ -5,7 +5,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../auth/auth.service';
-import { IUser } from '@access-hub/api-interfaces';
+import { IUser, Role } from '@access-hub/api-interfaces';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
@@ -20,11 +21,14 @@ import { IUser } from '@access-hub/api-interfaces';
     RouterLinkActive,
     NgTemplateOutlet,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class NavBarComponent {
   user: Signal<IUser | undefined> = this.authService.user.asReadonly();
+  role: Signal<Role> = this.authService.role;
+  isLoaded: Signal<boolean> = this.authService.isLoaded.asReadonly();
 
   constructor(private readonly authService: AuthService) {}
 
@@ -35,5 +39,11 @@ export class NavBarComponent {
   logout() {
     this.authService.logout();
   }
+
+  manageAccount() {
+    this.authService.navigateToSettings();
+  }
+
+  protected readonly Role = Role;
 }
 

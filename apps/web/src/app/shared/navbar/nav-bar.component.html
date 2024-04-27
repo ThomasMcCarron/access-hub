@@ -2,30 +2,51 @@
   <a mat-button routerLink="/" aria-label="Access Hub Home">
     Home
   </a>
-  <div class="flex-grow"></div>
-  <a mat-button routerLink="admin"
-     routerLinkActive="navbar-header-item-selected"
-  >
-    Admin
-  </a>
-
-  @if (user(); as user) {
-    <span>Logged in as {{user.firstName}} {{user.lastName}}</span>
-    <a mat-button routerLink="login"
-       (click)="logout()"
-    >
-      Sign Out
-    </a>
-  } @else {
-    <a mat-button routerLink="login"
-       (click)="login()"
-    >
-      Login
-    </a>
-  }
 
   <a mat-button routerLink="contribute"
      routerLinkActive="navbar-header-item-selected">
     Contribute
   </a>
+
+  <div class="flex-grow"></div>
+
+
+  @if (user(); as user) {
+
+    <button mat-button [matMenuTriggerFor]="accountMenu">
+      <span>{{ user.firstName }} {{ user.lastName }}</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #accountMenu="matMenu" >
+      <button mat-menu-item routerLink="account/listings">
+        <mat-icon>apps</mat-icon>
+        <span>My Listings</span>
+      </button>
+      <button mat-menu-item routerLink="account/reviews">
+        <mat-icon>reviews</mat-icon>
+        <span>My Reviews</span>
+      </button>
+      <button mat-menu-item (click)="manageAccount()">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Manage Account</span>
+      </button>
+      @if (role() === Role.ADMIN) {
+        <button mat-menu-item routerLink="admin"
+                routerLinkActive="navbar-header-item-selected"
+        >
+          <mat-icon>admin_panel_settings</mat-icon>
+          Admin
+        </button>
+      }
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  } @else if (isLoaded()) {
+    <a mat-button (click)="login()">
+      Login
+    </a>
+  }
 </nav>
