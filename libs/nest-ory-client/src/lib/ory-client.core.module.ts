@@ -1,8 +1,10 @@
 import { DynamicModule, Global, Module, Provider } from "@nestjs/common";
 
 import { OryClientAsyncOptions, OryClientOptions, OryClientOptionsFactory } from "./interfaces";
-import { oryClientToken, oryModuleOptions } from "./constants";
+import { ketoClientToken, oryClientToken, oryModuleOptions } from "./constants";
 import { getOryClient } from "./util";
+import { getKetoClient } from "./keto";
+import { createKetoClientProvider } from "./keto";
 import { createOryClientProvider } from "./providers";
 
 @Global()
@@ -10,11 +12,12 @@ import { createOryClientProvider } from "./providers";
 export class OryClientCoreModule {
   public static forRoot(options: OryClientOptions): DynamicModule {
     const oryClientProvider = createOryClientProvider(options);
+    const ketoClientProvider = createKetoClientProvider(options);
 
     return {
-      exports: [oryClientProvider],
+      exports: [oryClientProvider, ketoClientProvider],
       module: OryClientCoreModule,
-      providers: [oryClientProvider]
+      providers: [oryClientProvider, ketoClientProvider]
     };
   }
 
@@ -26,11 +29,18 @@ export class OryClientCoreModule {
         getOryClient(oryOptions)
     };
 
+    const ketoClientProvider: Provider = {
+      inject: [oryModuleOptions],
+      provide: ketoClientToken,
+      useFactory: (oryOptions: OryClientOptions) =>
+        getKetoClient(oryOptions)
+    };
+
     return {
-      exports: [oryClientProvider],
+      exports: [oryClientProvider, ketoClientProvider],
       imports: options.imports,
       module: OryClientCoreModule,
-      providers: [...this.createAsyncProviders(options), oryClientProvider]
+      providers: [...this.createAsyncProviders(options), oryClientProvider, ketoClientProvider]
     };
   }
 

@@ -1,22 +1,24 @@
 <h1>List an app on Access Hub</h1>
-<mat-stepper [linear]="true" #listAppStepper>
+<mat-stepper [linear]="true" #createAppStepper>
   <mat-step>
     <ng-template matStepLabel>Basic Details</ng-template>
     <ng-template matStepContent>
-      <div class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper">
+      <form class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper"
+            [formGroup]="basicDetailsForm"
+      >
         <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
           <span class="form-group-title">Basic Details</span>
           <mat-form-field color="accent">
             <mat-label>App Name</mat-label>
-            <input matInput>
+            <input matInput formControlName="name">
           </mat-form-field>
           <mat-form-field>
             <mat-label>App Description</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput formControlName="description"></textarea>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Website Address</mat-label>
-            <input matInput>
+            <input matInput formControlName="website">
           </mat-form-field>
         </div>
         <div class="flex flex-col p-2 rounded-lg form-subgroup">
@@ -30,25 +32,32 @@
           </mat-chip-listbox>
         </div>
         <div class="flex gap-2 justify-end">
-          <button mat-flat-button matStepperNext>Next</button>
+          <button mat-flat-button matStepperNext
+                  [disabled]="basicDetailsForm.invalid || (!(selectedCategories$ | async)?.length)"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+            Next
+          </button>
         </div>
-      </div>
+      </form>
     </ng-template>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pricing and Platforms</ng-template>
     <ng-template matStepContent>
-      <div class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper">
+      <form class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper"
+        [formGroup]="pricingAndPlatformsForm"
+      >
         <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
           <span class="form-group-title">Pricing Info</span>
-          <mat-slide-toggle labelPosition="before">
+          <mat-slide-toggle labelPosition="before" formControlName="isPaid" #isAppPaid>
             This app is paid
           </mat-slide-toggle>
-          <mat-form-field>
+          <mat-form-field [class.cdk-visually-hidden]="!isAppPaid.checked">
             <mat-label>Price</mat-label>
-            <input matInput>
+            <input matInput formControlName="price">
           </mat-form-field>
-          <mat-slide-toggle labelPosition="before">
+          <mat-slide-toggle labelPosition="before" formControlName="hasSubscription">
             This app has a subscription
           </mat-slide-toggle>
         </div>
@@ -64,15 +73,18 @@
           @for (platform of selectedPlatforms$ | async; track platform.id) {
             <mat-form-field>
               <mat-label>{{ platform.name }} Link</mat-label>
-              <input matInput required>
+              <input matInput [formControlName]="platform.id + '-' + platform.name + '-link'">
             </mat-form-field>
           }
         </div>
         <div class="flex gap-2 justify-end">
-          <button mat-flat-button matStepperPrevious>Back</button>
-          <button mat-flat-button matStepperNext>Next</button>
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext [disabled]="pricingAndPlatformsForm.invalid">
+            <mat-icon>arrow_forward</mat-icon>
+            Next
+          </button>
         </div>
-      </div>
+      </form>
     </ng-template>
   </mat-step>
   <mat-step>
@@ -91,8 +103,8 @@
           @for (feature of features(); track $index) {
             <div class="py-1 px-2 flex flex-row rounded-lg feature-group">
               <div class="flex flex-col">
-                <span class="feature-name">{{feature.name}}</span>
-                <span class="feature-description">{{feature.description}}</span>
+                <span class="feature-name">{{ feature.name }}</span>
+                <span class="feature-description">{{ feature.description }}</span>
               </div>
               <div class="flex-grow"></div>
               <button mat-icon-button (click)="removeFeature($index)">
@@ -121,8 +133,11 @@
           </form>
         </div>
         <div class="flex gap-2 justify-end">
-          <button mat-flat-button matStepperPrevious>Back</button>
-          <button mat-flat-button matStepperNext>Next</button>
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext>
+            <mat-icon>star</mat-icon>
+            List App!
+          </button>
         </div>
       </div>
     </ng-template>

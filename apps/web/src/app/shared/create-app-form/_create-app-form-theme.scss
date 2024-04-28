@@ -2,7 +2,7 @@
 
 @mixin theme($theme) {
   .create-app-form-wrapper {
-    border: 1px solid mat.get-theme-color($theme, outline);
+    background: mat.get-theme-color($theme, surface-container-high);
     color: mat.get-theme-color($theme, on-surface);
   }
 
@@ -14,12 +14,12 @@
   }
 
   .form-subgroup {
-    background: mat.get-theme-color($theme, surface-container);
+    background: mat.get-theme-color($theme, surface-container-low);
     color: mat.get-theme-color($theme, on-surface);
   }
 
   .form-sub-subgroup {
-    background: mat.get-theme-color($theme, surface-container-low);
+    background: mat.get-theme-color($theme, surface-container-lowest);
     color: mat.get-theme-color($theme, on-surface);
   }
 
