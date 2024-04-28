@@ -47,6 +47,14 @@ class EnvironmentVariables {
   @IsString()
   @MinLength(1)
   ORY_ACCESS_TOKEN: string;
+  @IsDefined()
+  @IsString()
+  @MinLength(1)
+  ORY_KETO_CHECK_URI: string;
+  @IsDefined()
+  @IsString()
+  @MinLength(1)
+  ORY_KETO_WRITE_URI: string;
 }
 
 export function validateEnvironmentConfig(config: Record<string, unknown>) {

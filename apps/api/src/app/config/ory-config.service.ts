@@ -11,6 +11,10 @@ export class OryConfigService implements OryClientOptionsFactory {
     return {
       clientUri: this.config.get<string>('ORY_CLIENT_URI'),
       accessToken: this.config.get<string>('ORY_ACCESS_TOKEN'),
+      ketoClient: 'grpc',
+      ketoCheckUri: this.config.get<string>('ORY_KETO_CHECK_URI'),
+      ketoWriteUri: this.config.get<string>('ORY_KETO_WRITE_URI'),
+      ketoRetryCount: 5,
     };
   }
 }
