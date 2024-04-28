@@ -9,12 +9,10 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'contribute',
-    title: 'Access Hub - Contribute',
-    loadComponent: () => import('./contribute').then(m => m.ContributeComponent)
+    loadChildren: () => import('./contribute/contributeRoutes').then(m => m.ContributeRoutes)
   },
   {
     path: 'admin',
-    title: 'Access Hub - Admin',
     loadChildren: () => import('./admin/admin.routes').then(m => m.AdminRoutes)
   },
   {

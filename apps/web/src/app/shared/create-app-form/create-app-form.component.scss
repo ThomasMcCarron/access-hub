@@ -1,0 +1,7 @@
+::ng-deep mat-slide-toggle > .mdc-form-field.mdc-form-field--align-end {
+  display: flex;
+
+  label {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .create-app-form-wrapper {
+    border: 1px solid mat.get-theme-color($theme, outline);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .form-group-title {
+    font: mat.get-theme-typography($theme, label-large, font)
+  }
+  .form-group-subtitle {
+    font: mat.get-theme-typography($theme, label-medium, font)
+  }
+
+  .form-subgroup {
+    background: mat.get-theme-color($theme, surface-container);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .form-sub-subgroup {
+    background: mat.get-theme-color($theme, surface-container-low);
+    color: mat.get-theme-color($theme, on-surface);
+  }
+
+  .feature-group {
+    background: mat.get-theme-color($theme, tertiary-container);
+    color: mat.get-theme-color($theme, on-tertiary-container);
+  }
+
+  .feature-name {
+    font: mat.get-theme-typography($theme, title-small, font)
+  }
+
+  .feature-description {
+    font: mat.get-theme-typography($theme, body-small, font)
+  }
+}

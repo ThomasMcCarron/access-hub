@@ -22,7 +22,7 @@ export interface IApp extends IEntity<string> {
 export interface IFeature extends IEntity<number> {
   name: string;
   description: string;
-  ofApp: IApp;
+  ofApp?: IApp;
 }
 
 export interface IPricingInfo {

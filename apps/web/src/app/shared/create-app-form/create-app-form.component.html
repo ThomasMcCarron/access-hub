@@ -1,0 +1,130 @@
+<h1>List an app on Access Hub</h1>
+<mat-stepper [linear]="true" #listAppStepper>
+  <mat-step>
+    <ng-template matStepLabel>Basic Details</ng-template>
+    <ng-template matStepContent>
+      <div class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper">
+        <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
+          <span class="form-group-title">Basic Details</span>
+          <mat-form-field color="accent">
+            <mat-label>App Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>App Description</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Website Address</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col p-2 rounded-lg form-subgroup">
+          <span class="form-group-title">What categories does this app fit?</span>
+          <mat-chip-listbox multiple (change)="selectedCategoriesChange($event)" class="mb-2">
+            @for (category of categories$ | async; track category.id) {
+              <mat-chip-option [value]="category">
+                {{ category.name }}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Pricing and Platforms</ng-template>
+    <ng-template matStepContent>
+      <div class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper">
+        <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
+          <span class="form-group-title">Pricing Info</span>
+          <mat-slide-toggle labelPosition="before">
+            This app is paid
+          </mat-slide-toggle>
+          <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-slide-toggle labelPosition="before">
+            This app has a subscription
+          </mat-slide-toggle>
+        </div>
+        <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
+          <span class="form-group-title">Available Platforms</span>
+          <mat-chip-listbox multiple (change)="selectedPlatformsChange($event)" class="mb-2">
+            @for (platform of platforms$ | async; track platform.id) {
+              <mat-chip-option [value]="platform">
+                {{ platform.name }}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+          @for (platform of selectedPlatforms$ | async; track platform.id) {
+            <mat-form-field>
+              <mat-label>{{ platform.name }} Link</mat-label>
+              <input matInput required>
+            </mat-form-field>
+          }
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button mat-flat-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Features and Developer</ng-template>
+    <ng-template matStepContent>
+      <div class="flex flex-col rounded-lg gap-2 p-2 create-app-form-wrapper">
+        <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
+          <span class="form-group-title">Developer Info</span>
+          <mat-slide-toggle labelPosition="before">
+            I am the app's developer
+          </mat-slide-toggle>
+        </div>
+        <div class="flex flex-col p-2 gap-2 rounded-lg form-subgroup">
+          <span class="form-group-title">Features</span>
+          <span class="form-group-subtitle">These features are shown on the app's page and make it easier to find the app</span>
+          @for (feature of features(); track $index) {
+            <div class="py-1 px-2 flex flex-row rounded-lg feature-group">
+              <div class="flex flex-col">
+                <span class="feature-name">{{feature.name}}</span>
+                <span class="feature-description">{{feature.description}}</span>
+              </div>
+              <div class="flex-grow"></div>
+              <button mat-icon-button (click)="removeFeature($index)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
+          <form class="flex flex-col p-2 gap-2 rounded-lg form-sub-subgroup"
+                [formGroup]="addFeatureForm"
+                (ngSubmit)="submitAddFeatureForm()"
+          >
+            <mat-form-field>
+              <mat-label>Feature Name</mat-label>
+              <input matInput name="Feature Name" required formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Feature Description</mat-label>
+              <textarea matInput name="Feature Description" required formControlName="description"></textarea>
+            </mat-form-field>
+            <div class="flex justify-end">
+              <button mat-flat-button color="accent" type="submit" [disabled]="addFeatureForm.invalid">
+                <mat-icon>add</mat-icon>
+                Add Feature
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button mat-flat-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-step>
+</mat-stepper>

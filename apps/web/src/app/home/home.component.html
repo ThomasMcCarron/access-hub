@@ -3,23 +3,23 @@
     <h1 class="mat-h1">Access Hub</h1>
     <h2>An open-source, easily-searchable directory of apps to make the world more accessible</h2>
   </div>
-
-  <mat-card appearance="outlined">
-    <mat-card-content>
-      <form>
-        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+  <form>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <mat-form-field class="w-full">
           <mat-label>Search for Apps</mat-label>
           <mat-icon matPrefix>search</mat-icon>
           <input matInput autocomplete="off">
         </mat-form-field>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  @if ((categories$ | async); as categories) {
-    <mat-chip-listbox class="mt-2" multiple>
-      @for (category of categories; track category.id) {
-        <mat-chip-option color="accent" [matTooltip]="category.description">{{category.name}}</mat-chip-option>
-      }
-    </mat-chip-listbox>
-  }
+      </mat-card-content>
+    </mat-card>
+    @if ((categories$ | async); as categories) {
+      <mat-chip-listbox class="mt-2" multiple>
+        @for (category of categories; track category.id) {
+          <mat-chip-option color="accent" [matTooltip]="category.description">{{ category.name }}</mat-chip-option>
+        }
+      </mat-chip-listbox>
+    }
+  </form>
+
 </div>
